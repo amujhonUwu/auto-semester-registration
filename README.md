@@ -2,7 +2,10 @@
 
 ## Description
 A simple "web scrapping" python code, which automatically registers a semester in the UTM.
-***(The legality of using this code is not yet proven.)***
+
+***- El uso de este código podría no ser legal.***
+***- No recomiendo usar este código en la práctica real.***
+***- No me responsabilizo por el uso que se le puede dar a este código.***
 
 You can clone the repository with this line:
 ```
