@@ -42,7 +42,7 @@ def no_se_encuentra_opcion(nombre_opcion:str, segundos_de_espera:float = 0):
     print(f"No se encuentra la opción/boton [{nombre_opcion}]. Esperando {segundos_de_espera} segundos... ")
     time.sleep(segundos_de_espera)
 
-def seleccionar_opcion_acordeon(id_opcion:str, opcion_visible:str):
+def seleccionar_opcion_acordeon(driver:webdriver, id_opcion:str, opcion_visible:str):
     """ Selecciona alguna opción por medio de texto visible (Usar en caso de acordeones). 
 
     * id_opcion: Id del acordeón.
@@ -53,53 +53,56 @@ def seleccionar_opcion_acordeon(id_opcion:str, opcion_visible:str):
     opcion = Select(driver.find_element(By.ID, ID_MALLA))
     opcion.select_by_visible_text("MAYO DEL 2023 HASTA SEPTIEMBRE DEL 2023")
 
+
+
 # ----- Script en ejecución -----
 
-driver = webdriver.Chrome()
-driver.get(URL)
+if __name__ == "__main__":
+    driver = webdriver.Chrome()
+    driver.get(URL)
 
-user = driver.find_element(By.ID, ID_USER)
-password = driver.find_element(By.ID, ID_PASSWORD)
-button = driver.find_element(By.CLASS_NAME, CLASS_BUTTON)
+    user = driver.find_element(By.ID, ID_USER)
+    password = driver.find_element(By.ID, ID_PASSWORD)
+    button = driver.find_element(By.CLASS_NAME, CLASS_BUTTON)
 
-user.send_keys(EMAIL)
-password.send_keys(PASSWORD)
-    
+    user.send_keys(EMAIL)
+    password.send_keys(PASSWORD)
+        
 
-while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
-    pass
+    while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
+        pass
 
-# Ingresa en las inscripciones
-button.click()
+    # Ingresa en las inscripciones
+    button.click()
 
-while(True):
-    try:
-        time.sleep(TIEMPO_DE_ESPERA)
-        # Selecciona la opción de inscripción
-        inscripcion = driver.find_element(By.ID, ID_INSCRIPCION)
-        inscripcion.click()
-        break
-    except:
-        no_se_encuentra_opcion("Inscripcion", 5)
-        driver.refresh() 
+    while(True):
+        try:
+            time.sleep(TIEMPO_DE_ESPERA)
+            # Selecciona la opción de inscripción
+            inscripcion = driver.find_element(By.ID, ID_INSCRIPCION)
+            inscripcion.click()
+            break
+        except:
+            no_se_encuentra_opcion("Inscripcion", 5)
+            driver.refresh() 
 
-time.sleep(TIEMPO_DE_ESPERA)
+    time.sleep(TIEMPO_DE_ESPERA)
 
 
-# Selecciona la carrera 
-seleccionar_opcion_acordeon(ID_CARRERA, CARRERA)
-time.sleep(TIEMPO_DE_ESPERA)
+    # Selecciona la carrera 
+    seleccionar_opcion_acordeon(driver, ID_CARRERA, CARRERA)
+    time.sleep(TIEMPO_DE_ESPERA)
 
-# Selecciona la Malla 
-seleccionar_opcion_acordeon(ID_MALLA, MALLA)
-time.sleep(TIEMPO_DE_ESPERA)
+    # Selecciona la Malla 
+    seleccionar_opcion_acordeon(driver, ID_MALLA, MALLA)
+    time.sleep(TIEMPO_DE_ESPERA)
 
-# Selecciona el periodo 
-seleccionar_opcion_acordeon(ID_PERIODO, CARRERA)
-time.sleep(TIEMPO_DE_ESPERA)
+    # Selecciona el periodo 
+    seleccionar_opcion_acordeon(driver, ID_PERIODO, CARRERA)
+    time.sleep(TIEMPO_DE_ESPERA)
 
-while(True):
-    pass
+    while(True):
+        pass
 
 
 
