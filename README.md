@@ -10,7 +10,15 @@ Recommending to create a virtual environment:
 
 ```
  python -m venv venv
+```
+If you are on linux:
+```
  source venv/bin/activate (en Linux/Mac)
+```
+If you are on Windows:
+```
  venv\Scripts\activate (en Windows)
+```
+```
  pip install -r requirements.txt
- ```
+```
