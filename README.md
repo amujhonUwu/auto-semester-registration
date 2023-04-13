@@ -1,21 +1,25 @@
 # auto-semester-registration
-A simple "web scrapping" python code, which automatically registers a semester in the UTM
 
-To use the code, you onle use in a terminal:
+## Description
+A simple "web scrapping" python code, which automatically registers a semester in the UTM.
+** The legality of using this code is not yet proven. **
 
-`git clone https://github.com/amujhonUwu/auto-semester-registration`
+You can clone the repository with this line:
+```
+git clone https://github.com/amujhonUwu/auto-semester-registration
+```
 
-Then, you have to install de requirements of the virtual enviroment.
-Recommending to create a virtual environment:
-
+## How to use the code
+First instal the requirements. (*Recommending to create a virtual environment*):
 ```
  python -m venv venv
 ```
-If you are on linux:
+Activate the virtual enviroment using:
+- If you are on linux:
 ```
  source venv/bin/activate (en Linux/Mac)
 ```
-If you are on Windows:
+- If you are on Windows:
 ```
  venv\Scripts\activate (en Windows)
 ```
