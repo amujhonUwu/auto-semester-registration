@@ -21,11 +21,11 @@ First instal the requirements. (*Recommending to create a virtual environment*):
 Activate the virtual enviroment using:
 - If you are on linux:
 ```
- source venv/bin/activate (en Linux/Mac)
+ source venv/bin/activate
 ```
 - If you are on Windows:
 ```
- venv\Scripts\activate (en Windows)
+ venv\Scripts\activate
 ```
 Finally:
 ```
