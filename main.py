@@ -9,8 +9,8 @@ import datetime
 URL = "https://preinscripcion.utm.edu.ec/login"
 
 # Ingresa aquí tu correo y tu contraseña
-EMAIL = "jcedeno7718@utm.edu.ec"
-PASSWORD = "Pochita14"
+EMAIL = ""
+PASSWORD = ""
 
 # Definiendo variables generales
 
@@ -24,7 +24,7 @@ ID_PERIODO = ""
 
 CLASS_BUTTON = "ant-btn"
 
-# TIEMPO_DE_EJECUCION = datetime.time(10, 00, 00)
+TIEMPO_DE_EJECUCION = datetime.time(10, 00, 00)
 TIEMPO_DE_ESPERA = 0.1  # <------- Aquí puedes modificar el tiempo de espera entre los cambios realizados.
 
 # Ingresa aquí tu Malla y tu Carrera correspondientes.
@@ -69,15 +69,16 @@ if __name__ == "__main__":
     password.send_keys(PASSWORD)
         
 
-    # while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
-    #     pass
+    while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
+        pass
 
     # Ingresa en las inscripciones
     button.click()
 
+
     while(True):
         try:
-            time.sleep(TIEMPO_DE_ESPERA)
+            time.sleep(0.2)
             # Selecciona la opción de inscripción
             inscripcion = driver.find_element(By.ID, ID_INSCRIPCION)
             inscripcion.click()
