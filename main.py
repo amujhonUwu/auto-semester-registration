@@ -22,6 +22,22 @@ ID_CARRERA = "cboescuelainscripcion"
 ID_MALLA = "cbomallahorario"
 ID_PERIODO = ""
 
+# Testeando @Día de inscripcion
+ID_DIAINSCRIPCION = "diainscripcion"
+ID_ESCUELA = "cboescuela"
+
+# Testeando @Suficiencia
+ID_SUFICIENCIA = "inscripcionsuf"
+NAME_CARRERA_TEST = "cmb_escuela"
+NAME_MALLA_TEST = "cmd_malla_est"
+NAME_PERIODO_TEST = "cmb_periodo"
+NAME_SUFICIENCIA = "cmb_malla"
+MALLA_TEST = "INGLÉS"
+
+CARRERA_TEST = "INGENIERIA DE SISTEMAS INFORMATICOS"
+MALLA = "SISTEMAS DE INFORMACION 2017 (REDISEÑO 2019)"
+PERIODO = "MAYO DEL 2023 HASTA SEPTIEMBRE DEL 2023"
+
 CLASS_BUTTON = "ant-btn"
 
 # TIEMPO_DE_EJECUCION = datetime.time(10, 00, 00)
@@ -43,14 +59,16 @@ def no_se_encuentra_opcion(nombre_opcion:str, segundos_de_espera:float = 0):
     print(f"No se encuentra la opción/boton [{nombre_opcion}]. Esperando {segundos_de_espera} segundos... ")
     time.sleep(segundos_de_espera)
 
-def seleccionar_opcion_acordeon(driver:webdriver, id_acordeon:str, opcion_visible:str):
+def seleccionar_opcion_acordeon(driver:webdriver, criterio_busqueda:By, variable_acordeon:str, opcion_visible:str):
     """ Selecciona alguna opción por medio de texto visible (Usar en caso de acordeones). 
 
+    * criterio_busqueda: Objeto de clase By para seleccionar al acordeón. 
+    Puede ser: By.NAME, By.CLASS_NAME, By.ID, By.CSS_SELECTOR, etc
+    * variable_acordeon: El nombre, id o clase del elemento acordeón.
     * opcion_visible: Texto de la opción a seleccionar.
-    * id_acordeon: El ID del elemento acordeón.
     """
 
-    opcion = Select(driver.find_element(By.ID, id_acordeon))
+    opcion = Select(driver.find_element(criterio_busqueda, variable_acordeon))
     opcion.select_by_visible_text(opcion_visible)
 
 
@@ -75,11 +93,12 @@ if __name__ == "__main__":
     # Ingresa en las inscripciones
     button.click()
 
+    # Selección de la opción escogida
     while(True):
         try:
             time.sleep(TIEMPO_DE_ESPERA)
             # Selecciona la opción de inscripción
-            inscripcion = driver.find_element(By.ID, ID_INSCRIPCION)
+            inscripcion = driver.find_element(By.ID, ID_SUFICIENCIA)
             inscripcion.click()
             break
         except:
@@ -90,15 +109,19 @@ if __name__ == "__main__":
 
     input("")
     # Selecciona la carrera 
-    seleccionar_opcion_acordeon(driver, ID_CARRERA, CARRERA)
+    seleccionar_opcion_acordeon(driver, By.NAME, NAME_CARRERA_TEST, CARRERA_TEST)
     time.sleep(TIEMPO_DE_ESPERA)
 
     # Selecciona la Malla 
-    seleccionar_opcion_acordeon(driver, ID_MALLA, MALLA)
+    seleccionar_opcion_acordeon(driver, By.NAME, NAME_MALLA_TEST, MALLA)
     time.sleep(TIEMPO_DE_ESPERA)
 
     # Selecciona el periodo 
-    seleccionar_opcion_acordeon(driver, ID_PERIODO, PERIODO)
+    seleccionar_opcion_acordeon(driver, By.NAME, NAME_PERIODO_TEST, PERIODO)
+    time.sleep(TIEMPO_DE_ESPERA)
+
+    # Selecciona el periodo 
+    seleccionar_opcion_acordeon(driver, By.NAME, NAME_SUFICIENCIA, MALLA_TEST)
     time.sleep(TIEMPO_DE_ESPERA)
 
     while(True):
