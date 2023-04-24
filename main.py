@@ -9,8 +9,8 @@ import datetime
 URL = "https://preinscripcion.utm.edu.ec/login"
 
 # Ingresa aquí tu correo y tu contraseña
-EMAIL = ""
-PASSWORD = ""
+EMAIL = "jcedeno7718@utm.edu.ec"
+PASSWORD = "Pochita14"
 
 # Definiendo variables generales
 
@@ -24,10 +24,11 @@ ID_PERIODO = ""
 
 CLASS_BUTTON = "ant-btn"
 
-TIEMPO_DE_EJECUCION = datetime.time(10, 00, 00)
+# TIEMPO_DE_EJECUCION = datetime.time(10, 00, 00)
 TIEMPO_DE_ESPERA = 0.1  # <------- Aquí puedes modificar el tiempo de espera entre los cambios realizados.
 
 # Ingresa aquí tu Malla y tu Carrera correspondientes.
+PERIODO = "MAYO DEL 2023 HASTA SEPTIEMBRE DEL 2023"
 MALLA = "SISTEMAS DE INFORMACION 2017 (REDISEÑO 2019)"
 CARRERA = "Ingenieria De Sistemas Informaticos"
 
@@ -42,16 +43,15 @@ def no_se_encuentra_opcion(nombre_opcion:str, segundos_de_espera:float = 0):
     print(f"No se encuentra la opción/boton [{nombre_opcion}]. Esperando {segundos_de_espera} segundos... ")
     time.sleep(segundos_de_espera)
 
-def seleccionar_opcion_acordeon(driver:webdriver, id_opcion:str, opcion_visible:str):
+def seleccionar_opcion_acordeon(driver:webdriver, id_acordeon:str, opcion_visible:str):
     """ Selecciona alguna opción por medio de texto visible (Usar en caso de acordeones). 
 
-    * id_opcion: Id del acordeón.
-
     * opcion_visible: Texto de la opción a seleccionar.
+    * id_acordeon: El ID del elemento acordeón.
     """
 
-    opcion = Select(driver.find_element(By.ID, ID_MALLA))
-    opcion.select_by_visible_text("MAYO DEL 2023 HASTA SEPTIEMBRE DEL 2023")
+    opcion = Select(driver.find_element(By.ID, id_acordeon))
+    opcion.select_by_visible_text(opcion_visible)
 
 
 
@@ -69,8 +69,8 @@ if __name__ == "__main__":
     password.send_keys(PASSWORD)
         
 
-    while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
-        pass
+    # while datetime.datetime.now().time() < TIEMPO_DE_EJECUCION:
+    #     pass
 
     # Ingresa en las inscripciones
     button.click()
@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     time.sleep(TIEMPO_DE_ESPERA)
 
-
+    input("")
     # Selecciona la carrera 
     seleccionar_opcion_acordeon(driver, ID_CARRERA, CARRERA)
     time.sleep(TIEMPO_DE_ESPERA)
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     time.sleep(TIEMPO_DE_ESPERA)
 
     # Selecciona el periodo 
-    seleccionar_opcion_acordeon(driver, ID_PERIODO, CARRERA)
+    seleccionar_opcion_acordeon(driver, ID_PERIODO, PERIODO)
     time.sleep(TIEMPO_DE_ESPERA)
 
     while(True):
