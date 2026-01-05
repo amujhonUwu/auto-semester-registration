@@ -1,4 +1,4 @@
-# auto-semester-registration
+# auto-semester-registration [DEPECRATED]
 
 ## Description
 A simple "web scrapping" python code, which automatically registers a semester in the UTM.
